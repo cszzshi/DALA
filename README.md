@@ -1,0 +1,75 @@
+# DALA
+This is the official implementation of the paper "Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images".
+## Introduction
+DALA is a label assignment strategy that can replace mainstream anchor-based and anchor-free label strategies and boost their performance on tiny object detection tasks.
+
+**Abstract**: With the development of unmanned aerial vehicle and satellite technology, the application of tiny object detection in remote sensing images is becoming increasingly widespread. Although significant progress has been made in the accuracy and speed of object detection in recent years, performance declines sharply when general object detectors are applied to tiny objects, one of the main reasons is unsuitable label assignment strategy. Traditional label assignment strategies often rely on fixed thresholds, leading to mismatches between the number of positive samples and object areas. Additionally, most improved methods require setting one or more hyperparameters. In this paper, we propose a Dynamic Adaptive Label Assignment strategy (DALA) comprising three modules. First, we calculate the similarity distance to comprehensively evaluate the matching degree between anchors and each ground truth. Then, we use the ratio-based label assignment strategy to select an appropriate number of positive samples for each object. Finally, we introduce dynamic weighting loss during training to ensure the model pays more attention to tiny objects. Our three modules automatically adapt to different datasets and detectors without any manual hyperparameter settings. Extensive experiments on four widely used datasets demonstrate the excellent performance of our proposed method.
+
+<div align="center">
+<img src="network.png"/>
+</div>
+
+## Installation
+Required environments:
+
+-   Linux
+-   Python 3.6+
+-   PyTorch 1.3+
+-   CUDA 9.2+
+-   GCC 5+
+-   [MMCV](https://mmcv.readthedocs.io/en/latest/#installation)
+-   [cocoapi-aitod](https://github.com/jwwangchn/cocoapi-aitod)
+
+Install:
+
+Note that this repository is based on the [MMDetection](https://github.com/open-mmlab/mmdetection). Assume that your environment has satisfied the above requirements, please follow the following steps for installation.
+
+    git clone https://github.com/cszzshi/DALA.git
+    cd DALA
+    pip install -v -e .
+
+Verify the installation:
+
+To verify whether MMDetection is installed correctly, we provide some sample codes to run an inference demo.
+
+**Step 1.** We need to download config and checkpoint files.
+
+    mim download mmdet --config rtmdet_tiny_8xb32-300e_coco --dest .
+  
+  **Step 2.** Verify the inference demo.
+  
+    python demo/image_demo.py demo/demo.jpg rtmdet_tiny_8xb32-300e_coco.py --weights rtmdet_tiny_8xb32-300e_coco_20220902_112414-78e30dcc.pth --device cpu
+
+You will see a new image `demo.jpg` on your `./outputs/vis` folder, where bounding boxes are plotted on cars, benches, etc.
+
+## Get Started
+
+Prepare the dataset:
+
+VisDrone2019 dataset
+ - trainset (1.44 GB): [Baidu Yun](https://pan.baidu.com/s/1K-JtLnlHw98UuBDrYJvw3A) | [Google Drive](https://drive.google.com/file/d/1a2oHjcEcwXP8oUF95qiwrqzACb2YlUhn/view?usp=sharing)
+ - valset (0.07 GB): [Baidu Yun](https://pan.baidu.com/s/1jdK_dAxRJeF2Xi50IoML1g) | [Google Drive](https://drive.google.com/file/d/1bxK5zgLn0_L8x276eKkuYA_FzwCIjb59/view?usp=sharing)
+
+Train and test:
+
+**Situation 1.** Test using the pre-trained weight.
+
+**Step 1.** Download the pre-trained weight file.
+
+- faster-rcnn_r50_fpn_1x_dala_visdrone.pth (317.42MB): [Baidu Yun](https://pan.baidu.com/s/1NVi5nJkqXhorRzp63Vcncg?pwd=qfzw)
+
+**Step 2.** Get detection accuracy.
+
+    python tools/test.py configs/dala/faster-rcnn_r50_fpn_1x_dala_visdrone.py weights/faster-rcnn_r50_fpn_1x_dala_visdrone.pth
+
+
+**Situation 2.** Train and test from scratch.
+
+    python tools/train.py configs/dala/faster-rcnn_r50_fpn_1x_dala_visdrone.py
+
+Links of other datasets:
+
+- AI-TOD (22.95 GB):  [Extreme Mart](https://www.cvmart.net/dataSets/detail/361)
+- AI-TODv2 (22.95 GB): [Google Drive](https://drive.google.com/drive/folders/1Er14atDO1cBraBD4DSFODZV1x7NHO_PY?usp=sharing)
+- MS COCO 2017 (19.97GB): [Model Scope](https://www.modelscope.cn/datasets/AI-ModelScope/coco/dataPeview)
+
