@@ -1,3 +1,4 @@
+
 # DALA
 This is the official implementation of the paper "Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images".
 ## Introduction
@@ -73,3 +74,15 @@ Links of other datasets:
 - AI-TODv2 (22.95 GB): [Google Drive](https://drive.google.com/drive/folders/1Er14atDO1cBraBD4DSFODZV1x7NHO_PY?usp=sharing)
 - MS COCO 2017 (19.97GB): [Model Scope](https://www.modelscope.cn/datasets/AI-ModelScope/coco/dataPeview)
 
+## Citation
+
+Welcome to cite this project in your research.
+
+```
+@article{https://doi.org/10.1049/cit2.70083,
+  title = {Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images},
+  author = {Shi, Shuohao and Fang, Qiang and Xu, Xin},
+  journal = {CAAI Transactions on Intelligence Technology},
+  year = {2026}
+}
+```
