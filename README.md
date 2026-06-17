@@ -80,9 +80,12 @@ Welcome to cite this project in your research.
 
 ```
 @article{https://doi.org/10.1049/cit2.70083,
-  title = {Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images},
-  author = {Shi, Shuohao and Fang, Qiang and Xu, Xin},
-  journal = {CAAI Transactions on Intelligence Technology},
-  year = {2026}
+    author = {Shi, Shuohao and Fang, Qiang and Xu, Xin},
+    title = {Dynamic Adaptive Label Assignment for Tiny Object Detection in Remote Sensing Images},
+    journal = {CAAI Transactions on Intelligence Technology},
+    volume = {11},
+    number = {2},
+    pages = {428-446},
+    year = {2026}
 }
 ```
